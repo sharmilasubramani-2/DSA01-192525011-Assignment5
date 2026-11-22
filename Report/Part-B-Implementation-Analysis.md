@@ -109,3 +109,23 @@ The virtual-function removal experiment, virtual-destructor sanitizer experiment
 # Overall Conclusion
 
 The implemented billing system demonstrates inheritance, runtime polymorphism, payer abstraction, custom exception handling, RAII, correctness comparison and performance measurement. The recorded results support the use of polymorphism for extensible billing and return-code validation for frequent expected errors.
+
+## Additional Design Experiments
+
+### Virtual Function Removal
+
+The design experiment calls a derived object through a base-class pointer after removing virtual dispatch from the base method. The base implementation is selected, demonstrating static binding and the loss of runtime polymorphism.
+
+### Virtual Destructor Verification
+
+A compile-time type-trait check verifies that the original base class does not have a virtual destructor and that the safe base class does. Deleting a derived object through a base pointer without a virtual destructor can cause undefined behavior. The experiment avoids deliberately triggering undefined behavior.
+
+AddressSanitizer execution remains unavailable because the installed GCC toolchain could not locate the required libasan runtime.
+
+### Exception Rethrowing
+
+The experiment compares `throw;`, which preserves the original exception's dynamic type, with `throw error;`, which can slice a derived exception when rethrowing through a base-class reference.
+
+### Return-Code and Exception Benchmark
+
+The additional benchmark compares one million validations using return-code checks and exception handling at 0%, 1%, and 50% invalid-input rates. Results are machine- and compiler-dependent. Exceptions are intended for exceptional conditions rather than routine validation failures.

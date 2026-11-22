@@ -82,3 +82,8 @@ AddressSanitizer compilation was attempted, but the installed toolchain could no
 ## GitHub Repository
 
 https://github.com/sharmilasubramani-2/DSA01-192525011-Assignment5
+
+## Additional Experiments
+
+- B1: design-experiments.cpp compares non-virtual dispatch, virtual destructor properties and exception rethrowing.
+- B2: optional-vs-exception.cpp benchmarks validation strategies at different invalid-input rates.
