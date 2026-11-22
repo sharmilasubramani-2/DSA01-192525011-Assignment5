@@ -129,3 +129,35 @@ The experiment compares `throw;`, which preserves the original exception's dynam
 ### Return-Code and Exception Benchmark
 
 The additional benchmark compares one million validations using return-code checks and exception handling at 0%, 1%, and 50% invalid-input rates. Results are machine- and compiler-dependent. Exceptions are intended for exceptional conditions rather than routine validation failures.
+
+## Corrected Validation Benchmark - Final Results
+
+The earlier benchmark checksum calculation was corrected. Both approaches now count only valid records, making their correctness results directly comparable.
+
+Compiler optimization: -O2
+Records per test: 1,000,000
+
+\\\	ext
+CORRECTED VALIDATION BENCHMARK
+Records per test: 1000000
+
+Invalid rate: 0%
+Return-code time: 0.5066 ms
+Exception time: 0.5119 ms
+Valid records - Return code: 1000000 | Exceptions: 1000000
+
+Invalid rate: 1%
+Return-code time: 0.5024 ms
+Exception time: 28.084 ms
+Valid records - Return code: 990000 | Exceptions: 990000
+
+Invalid rate: 50%
+Return-code time: 0.5069 ms
+Exception time: 1369.57 ms
+Valid records - Return code: 500000 | Exceptions: 500000
+
+ALL BENCHMARK CHECKS PASSED
+
+\\\
+
+The measured execution times are specific to this machine and run. Exception handling is significantly more expensive when invalid inputs are frequent. Return-code validation is therefore preferable for routine validation failures, while exceptions remain suitable for exceptional conditions.
