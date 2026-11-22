@@ -11,19 +11,21 @@
 
 ## Assignment Overview
 
-This assignment implements a hospital billing and insurance claim management system using object-oriented programming.
+Implementation of a hospital billing and insurance claim management system using object-oriented programming, runtime polymorphism and exception handling.
 
-## Part A - Design and Implementation
+## Part A - Design and Theoretical Analysis
 
 | Section | Topic |
 |---|---|
-| A1 | Bill Hierarchy |
+| A1 | Bill Hierarchy and Object-Oriented Design |
 | A2 | Runtime Polymorphism |
 | A3 | Payer Polymorphism |
 | A4 | Exception Handling |
 | A5 | Exception Recovery and RAII |
 
-## Part B - Practical Implementation
+Report: [Part A Design and Analysis](Report/Part-A-Design-Analysis.md)
+
+## Part B - Implementation and Testing
 
 | Section | Topic |
 |---|---|
@@ -31,6 +33,8 @@ This assignment implements a hospital billing and insurance claim management sys
 | B2 | Error Conditions |
 | B3 | Performance Comparison |
 | B4 | Final Engineering Decision |
+
+Report: [Part B Implementation and Analysis](Report/Part-B-Implementation-Analysis.md)
 
 ## Repository Structure
 
@@ -43,28 +47,37 @@ This assignment implements a hospital billing and insurance claim management sys
 - B2-Error-Conditions
 - B3-Performance-Comparison
 - B4-Final-Engineering-Decision
+- Report
+
+Each task folder contains its implementation source and execution screenshot. B3 also includes benchmark results and correctness comparison. B4 includes the engineering decision document.
 
 ## Compilation
 
-Run the following commands from the relevant task directory:
+Run commands from the relevant task directory:
 
-    g++ -std=c++17 -Wall -Wextra main.cpp -o main.exe
+```powershell
+g++ -std=c++17 -Wall -Wextra main.cpp -o main.exe
+.\main.exe
+```
 
-    .\main.exe
+For B3 performance benchmarking:
 
-For B3 performance benchmarking, compile with -O2.
+```powershell
+g++ -std=c++17 -O2 -Wall -Wextra main.cpp -o main.exe
+.\main.exe
+```
 
 ## Performance Results
 
-Refer to B3-Performance-Comparison/benchmark-results.md.
+See [B3 Benchmark Results](B3-Performance-Comparison/benchmark-results.md).
 
 ## Engineering Decision
 
-Refer to B4-Final-Engineering-Decision/engineering-decision.md.
+See [B4 Engineering Decision](B4-Final-Engineering-Decision/engineering-decision.md).
 
-## Testing Limitation
+## Verification Limitations
 
-AddressSanitizer compilation was attempted, but the installed toolchain could not locate the required libasan runtime. Sanitizer execution remains pending.
+AddressSanitizer compilation was attempted, but the installed toolchain could not locate the required libasan runtime. Sanitizer execution remains unverified. The virtual-function removal experiment, virtual-destructor sanitizer experiment and separate optional-versus-exception benchmark remain pending.
 
 ## GitHub Repository
 
