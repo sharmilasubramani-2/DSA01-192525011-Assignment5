@@ -56,3 +56,48 @@ The polymorphism benchmark reuses two bill objects to focus on dispatch overhead
 
 Additional repeated runs and warm-up measurements would improve statistical reliability.
 
+
+## 6. Correctness Comparison Using Ten Bills
+
+Both implementations were tested using the same ten outpatient and inpatient bills.
+
+| Metric | Runtime Polymorphism | std::variant |
+|---|---:|---:|
+| Number of bills | 10 | 10 |
+| Grand total | 291500.00 | 291500.00 |
+| Correctness | PASS | PASS |
+
+### Individual Bill Results
+
+| Bill | Runtime Polymorphism | std::variant |
+|---:|---:|---:|
+| 1 | 1700.00 | 1700.00 |
+| 2 | 49200.00 | 49200.00 |
+| 3 | 2000.00 | 2000.00 |
+| 4 | 52600.00 | 52600.00 |
+| 5 | 2300.00 | 2300.00 |
+| 6 | 56000.00 | 56000.00 |
+| 7 | 2600.00 | 2600.00 |
+| 8 | 59400.00 | 59400.00 |
+| 9 | 2900.00 | 2900.00 |
+| 10 | 62800.00 | 62800.00 |
+
+### Correctness Analysis
+
+Both approaches generated identical individual bill totals and identical grand totals.
+
+The test confirms that runtime polymorphism and std::variant with std::visit can implement the same billing calculations correctly for the tested bill types.
+
+Runtime polymorphism supports extensibility through inheritance and virtual functions. std::variant provides type-safe alternatives when the set of bill types is explicitly defined.
+
+## 7. Engineering Conclusion
+
+Runtime polymorphism is suitable when new bill types must be introduced through an extensible class hierarchy.
+
+std::variant is suitable when the supported bill types are known and controlled at compile time.
+
+Return-code validation is preferable for frequent expected validation failures because it avoids the high cost of repeatedly throwing exceptions.
+
+Exceptions should be reserved primarily for exceptional conditions that interrupt normal billing operations.
+
+The benchmark results are specific to this execution environment and should not be treated as universal performance guarantees.
